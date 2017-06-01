@@ -1,10 +1,10 @@
-import { Input } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Zip } from '../zip';
+import { Input } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { Observable } from "rxjs/Observable";
+import { Zip } from "../zip";
 
 @Component({
-  selector: 'app-table',
+  selector: "app-table",
   templateUrl: "./table.component.html",
   styleUrls: ["./table.component.css"]
 })
@@ -14,7 +14,7 @@ export class TableComponent implements OnInit {
   zips: Array<Zip>;
   searchTerm = "";
   actualSort = "";
-  page = 0;
+  currentPage = 0;
   pageSize = 10;
   pageSizes = Array<number>();
 
@@ -49,32 +49,36 @@ export class TableComponent implements OnInit {
     this.data = this.zips.filter(x => {
       return x.city.toLowerCase().indexOf(this.searchTerm.toLowerCase()) >= 0;
     });
-    this.page = 0;
+    this.currentPage = 0;
   }
 
   public next() {
-    this.page++;
+    this.currentPage++;
   }
 
   public prev() {
-    if (this.page === 0) { return; }
-    this.page--;
+    if (this.currentPage === 0) { return; }
+    this.currentPage--;
   }
 
   public onPageSizeChanged(value: number) {
     this.pageSize = <number>value;
 
     if (this.elementsFrom > this.data.length) {
-      this.page = 0;
+      this.currentPage = 0;
     }
   }
 
   public get elementsFrom(): number {
-    return this.page * this.pageSize;
+    return this.currentPage * this.pageSize;
   }
 
   public get elementsTo(): number {
     return this.elementsFrom + this.pageSize;
+  }
+
+  public get page(): number {
+    return this.currentPage;
   }
 }
 

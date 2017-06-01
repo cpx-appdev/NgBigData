@@ -5,15 +5,15 @@ import { Zip } from '../zip';
 
 @Component({
   selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.css']
+  templateUrl: "./table.component.html",
+  styleUrls: ["./table.component.css"]
 })
 export class TableComponent implements OnInit {
 
   @Input() data = Array<Zip>();
   zips: Array<Zip>;
-  searchTerm = '';
-  actualSort = '';
+  searchTerm = "";
+  actualSort = "";
   page = 0;
   pageSize = 10;
   pageSizes = Array<number>();
@@ -32,7 +32,7 @@ export class TableComponent implements OnInit {
   }
 
   public sort(property, direction: SortDirection) {
-    console.log('sort data: ' + property);
+    console.log("sort data: " + property);
     this.actualSort = property + direction;
     this.data.sort(function (a, b) {
       if (a[property] < b[property]) { return -1 * direction; }
@@ -45,7 +45,7 @@ export class TableComponent implements OnInit {
     if (this.zips === undefined) {
       this.zips = this.data.slice();
     }
-    console.log('search data with ' + this.searchTerm);
+    console.log("search data with " + this.searchTerm);
     this.data = this.zips.filter(x => {
       return x.city.toLowerCase().indexOf(this.searchTerm.toLowerCase()) >= 0;
     });

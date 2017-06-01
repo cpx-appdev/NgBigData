@@ -30,3 +30,9 @@ const context = require.context('./', true, /\.spec\.ts$/);
 context.keys().map(context);
 // Finally, start Karma to run the tests.
 __karma__.start();
+
+
+//Video: https://www.youtube.com/watch?v=ZNNdFJK7QPA
+//Docs: https://angular.io/docs/ts/latest/guide/testing.html
+//Jasmine: https://jasmine.github.io/
+//Tutorial: http://chariotsolutions.com/blog/post/testing-angular-2-components-unit-tests-testcomponentbuilder/
